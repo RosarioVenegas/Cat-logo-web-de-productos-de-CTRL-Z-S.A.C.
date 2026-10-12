@@ -1,5 +1,5 @@
 /* ===== Variables de color y base ===== */
-:root{--bg:#EDF2F9;--card:#FFFFFF;--ink:#1C1C1C;--mute:#5A6B85;--line:#C9D7EC;--accent:#007BFF;--accent-ink:#FFFFFF;--chip:#DCE6F4;color-scheme:light;
+:root{--bg:#EDF2F9;--card:#FFFFFF;--ink:#1C1C1C;--mute:#5A6B85;--line:#C9D7EC;--accent:#1E3A8A;--accent-ink:#FFFFFF;--chip:#DCE6F4;color-scheme:light;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 *{box-sizing:border-box}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
@@ -11,13 +11,15 @@ h1,h2,h3,.brand{font-family:"Space Grotesk",system-ui,sans-serif;margin:0}
 header{background:#fff;border-bottom:1px solid #E2E8F0;--ink:#1C1C1C}
 .bar{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
 .brand{font-size:1.25rem;font-weight:700;letter-spacing:-.01em}
-.brand i{font-style:normal;color:#007BFF}.brand small{font-size:.6rem;font-weight:500;color:#5F6B7A;margin-left:5px}
+.brand i{font-style:normal;color:#1E3A8A}.brand small{font-size:.6rem;font-weight:500;color:#5F6B7A;margin-left:5px}
 .wa-top{font-size:.9rem;font-weight:700;color:var(--ink);text-decoration:none;border:1.5px solid var(--ink);border-radius:999px;padding:7px 14px}
 .hero{padding:44px 0 26px}
 .hero h1{font-size:clamp(2rem,6vw,3.4rem);line-height:1.05;letter-spacing:-.02em;max-width:15ch}
 .hero p{color:var(--mute);max-width:46ch;margin:14px 0 0}
 
 /* ===== Banner principal ===== */
+.banner-img{max-width:1040px;margin:0 auto;padding:0 18px}
+.banner-img img{display:block;width:100%;height:auto;border-radius:14px}
 .banner{background:#0B1226;color:#fff;overflow:hidden}
 .bn{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:34px 18px;flex-wrap:wrap}
 .bn h1{font-size:clamp(2rem,6vw,3.2rem);line-height:1.05;letter-spacing:-.02em;max-width:14ch}
@@ -42,7 +44,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-off
 .body h3{font-size:1.05rem}
 .spec{color:var(--mute);font-size:.88rem;margin:0}
 .row{display:flex;align-items:baseline;justify-content:space-between;margin-top:auto;padding-top:10px}
-.price{font-family:"Space Grotesk",sans-serif;font-size:1.4rem;font-weight:700;color:#0063D1}
+.price{font-family:"Space Grotesk",sans-serif;font-size:1.4rem;font-weight:700;color:#3a679b}
 .stock{font-size:.82rem;color:var(--mute)}
 .buy{display:block;text-align:center;text-decoration:none;font-weight:700;background:var(--accent);color:var(--accent-ink);border-radius:10px;padding:10px;margin-top:10px}
 .info{display:flex;gap:18px;align-items:center;flex-wrap:wrap;background:#fff;color:#1C1C1C;--ink:#1C1C1C;--mute:#5F6B7A}.zeta{width:120px;height:auto;border-radius:12px}
@@ -81,7 +83,7 @@ footer{padding:34px 0 40px;color:var(--mute);font-size:.9rem}
 .ic b{display:block}
 .ic span:not(.ico){display:block;color:#4A5A75;font-size:.9rem}
 .ico{flex:none;width:44px;height:44px;border-radius:12px;background:rgba(0,123,255,.12);display:grid;place-items:center}
-.ico svg,.chip-p svg,.m b svg{fill:none;stroke:#007BFF;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.ico svg,.chip-p svg,.m b svg{fill:none;stroke:#1E3A8A;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .ico svg{width:24px;height:24px}
 .steps{list-style:none;margin:0 0 16px;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
 .steps li{display:flex;align-items:center;gap:10px;font-weight:600}

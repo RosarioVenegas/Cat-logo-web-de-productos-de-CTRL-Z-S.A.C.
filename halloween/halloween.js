@@ -11,8 +11,8 @@
   fondo.className="hw-fondo"; fondo.setAttribute("aria-hidden","true");
   fondo.innerHTML=
     '<div class="hw-mist hw-m1"></div><div class="hw-mist hw-m2"></div>'+
-    '<div class="hw-tomb" style="left:3%">R.I.P.<br>lentitud</div>'+
-    '<div class="hw-tomb" style="left:calc(3% + 110px);height:96px;width:80px;opacity:.9">R.I.P.<br>pantallazo azul</div>'+
+    '<img class="hw-lapida" src="img/Tumba1ControlZ.png" alt="" style="left:3%">'+
+    '<img class="hw-lapida" src="img/Tumba1ControlZ.png" alt="" style="left:calc(3% + 110px)">'+
     '<div class="hw-say">¡Revivimos tu PC! 🧟</div>'+
     '<img class="hw-zeta" src="img/zeta.png" alt="">';
   document.body.appendChild(fondo);
