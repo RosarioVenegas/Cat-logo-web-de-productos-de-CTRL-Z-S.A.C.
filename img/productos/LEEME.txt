@@ -1,0 +1,2 @@
+Guarda aqui las fotos de los productos con el SKU como nombre, en .jpg y cuadradas.
+Ejemplo: A-001.jpg

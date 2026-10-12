@@ -41,27 +41,15 @@ var box='<svg viewBox="0 0 64 64" aria-hidden="true"><rect x="12" y="16" width="
 var grid=document.getElementById("grid"), filtro="todo";
 document.getElementById("waTop").href=wa("Hola, quisiera información sobre sus productos.");
 
-
 function card(p){
-  var c=norm(p.categoria),
-      of=yes(p.en_oferta)&&num(p.precio_oferta)>0,
-      stock=parseInt(p.stock,10);
+  var c=norm(p.categoria), of=yes(p.en_oferta)&&num(p.precio_oferta)>0, stock=parseInt(p.stock,10);
   var agotado=!isNaN(stock)&&stock<=0;
   var final=of?num(p.precio_oferta):num(p.precio);
-
+  var src=p.imagen_url||(p.sku?"img/productos/"+p.sku+".jpg":"");
+  var img=src?'<img loading="lazy" src="'+esc(src)+'" alt="'+esc(p.nombre)+'" onerror="this.remove()">':"";
   var icono=(c==="laptops"||c==="computadoras de mesa")?laptop:box;
-
-  var imagen=p.imagen_url
-    ? '<img loading="lazy" src="'+esc(p.imagen_url)+'" alt="'+esc(p.nombre)+'" onerror="this.remove();this.parentNode.classList.remove(\'con-imagen\')">'
-    : "";
-
-  var visual=imagen
-    ? '<div class="ph con-imagen">'+imagen+(of?'<span class="tag">Oferta</span>':'')+'</div>'
-    : '<div class="ph">'+icono+(of?'<span class="tag">Oferta</span>':'')+'</div>';
-
-  return '<article class="card" data-c="'+esc(c)+'" data-o="'+(of?1:0)+'">'+visual+'<div class="body"><h3>'+esc(p.nombre)+'</h3><p class="spec">'+esc(p.especificaciones||"")+'</p><div class="row"><span class="price">'+(of?'<span class="old">'+money(num(p.precio))+'</span>':'')+money(final)+'</span><span class="stock">'+(agotado?"Sin stock":(isNaN(stock)?"":"Stock: "+stock))+'</span></div><a class="buy'+(agotado?" off":"")+'" href="'+wa("Hola, me interesa: "+p.nombre+" ("+money(final)+"). ¿Está disponible?")+'" target="_blank" rel="noopener">'+(agotado?"Agotado":"Pedir por WhatsApp")+'</a></div></article>';
+  return '<article class="card" data-c="'+esc(c)+'" data-o="'+(of?1:0)+'"><div class="ph">'+icono+img+(of?'<span class="tag">Oferta</span>':'')+'</div><div class="body"><h3>'+esc(p.nombre)+'</h3><p class="spec">'+esc(p.especificaciones||"")+'</p><div class="row"><span class="price">'+(of?'<span class="old">'+money(num(p.precio))+'</span>':'')+money(final)+'</span><span class="stock">'+(agotado?"Agotado":(isNaN(stock)?"":"Disponible"))+'</span></div><a class="buy'+(agotado?" off":"")+'" href="'+wa("Hola, me interesa: "+p.nombre+" ("+money(final)+"). ¿Está disponible?")+'" target="_blank" rel="noopener">'+(agotado?"Agotado":"Pedir por WhatsApp")+'</a></div></article>';
 }
-
 function aplicar(){
   var visibles=0;
   document.querySelectorAll(".card").forEach(function(el){
@@ -72,7 +60,7 @@ function aplicar(){
   if(m)m.hidden=visibles>0;
 }
 function render(lista){
-  var act=lista.filter(function(p){return p.nombre&&!/^(no|false|0)$/.test(norm(p.activo))});
+  var act=lista.filter(function(p){return p.nombre&&num(p.precio)>0&&!/^(no|false|0)$/.test(norm(p.activo))});
   grid.innerHTML=act.map(card).join("")+'<p class="msg" id="vacio" hidden>No hay productos en esta sección por ahora.</p>';
   aplicar();
 }

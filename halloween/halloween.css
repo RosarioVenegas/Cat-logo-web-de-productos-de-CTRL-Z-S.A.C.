@@ -1,0 +1,42 @@
+/* ===== Tema Halloween "Zeta zombie" (temporal) =====
+   Para quitarlo: borra la línea <script src="halloween/halloween.js"> de index.html
+   y la carpeta halloween/. También se apaga solo desde el 2 de noviembre de 2026. */
+body.hw{
+  background:
+    radial-gradient(1.5px 1.5px at 20px 30px,rgba(255,255,255,.55),transparent),
+    radial-gradient(1px 1px at 90px 140px,rgba(255,255,255,.4),transparent),
+    radial-gradient(1.5px 1.5px at 200px 80px,rgba(255,255,255,.6),transparent),
+    linear-gradient(180deg,#140A2E 0%,#1E1048 50%,#0E1A3C 100%);
+  background-size:260px 260px,260px 260px,260px 260px,100% 100%;
+  background-attachment:fixed;
+}
+.hw .note,.hw .msg,.hw footer{color:#CDBEF5}
+
+/* Capa de fondo: niebla, lápidas y Zeta (detrás del contenido) */
+.hw-fondo{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+.hw-mist{position:absolute;width:70vw;height:32vh;border-radius:50%;filter:blur(24px);
+  background:radial-gradient(closest-side,rgba(124,224,74,.26),transparent);
+  animation:hw-drift 26s ease-in-out infinite alternate}
+.hw-m1{top:10%;left:-20%}
+.hw-m2{top:70%;left:-10%;animation-duration:32s}
+@keyframes hw-drift{to{transform:translateX(40vw)}}
+.hw-tomb{position:absolute;bottom:0;width:92px;height:118px;border-radius:46px 46px 4px 4px;
+  background:linear-gradient(#6b6f8f,#4d516f);color:#EDE7FF;text-align:center;font-weight:700;
+  font-size:.72rem;line-height:1.2;padding-top:34px;box-shadow:inset 0 0 0 3px rgba(255,255,255,.12)}
+.hw-tomb::before{content:"R.I.P.";position:absolute;top:12px;left:0;right:0;font-size:.8rem;letter-spacing:.06em}
+.hw-zeta{position:absolute;right:3%;bottom:0;width:150px;height:auto;animation:hw-bob 4s ease-in-out infinite}
+@keyframes hw-bob{50%{transform:translateY(-12px)}}
+.hw-say{position:absolute;right:calc(3% + 100px);bottom:150px;background:#fff;color:#1C1C1C;font-weight:700;
+  font-size:.85rem;border-radius:14px 14px 4px 14px;padding:8px 12px;max-width:170px;box-shadow:0 4px 18px rgba(0,0,0,.35)}
+
+/* Capa de arañitas: cuelgan del borde de arriba, por encima del contenido (sin bloquear clics) */
+.hw-aranas{position:fixed;inset:0;z-index:5;overflow:hidden;pointer-events:none}
+.hw-sp{position:absolute;top:0;width:2px;height:0;background:rgba(255,255,255,.6);animation:hw-drop ease-in-out infinite}
+.hw-sp span{position:absolute;bottom:-16px;left:-10px;font-size:22px;line-height:1}
+@keyframes hw-drop{0%{height:0}30%{height:var(--h)}62%{height:var(--h)}95%{height:0}100%{height:0}}
+
+@media (max-width:700px){.hw-say{display:none}.hw-tomb{display:none}}
+@media (prefers-reduced-motion:reduce){
+  .hw-mist,.hw-zeta{animation:none}
+  .hw-sp{display:none}
+}

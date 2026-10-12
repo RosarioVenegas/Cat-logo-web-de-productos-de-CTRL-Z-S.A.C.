@@ -23,30 +23,51 @@
 <button data-f="laptops" aria-pressed="false">Laptops</button>
 <button data-f="componentes" aria-pressed="false">Componentes</button>
 <button data-f="accesorios" aria-pressed="false">Accesorios</button>
+<button data-f="impresoras" aria-pressed="false">Impresoras</button>
 <button data-f="ofertas" aria-pressed="false">Ofertas</button>
 </div>
 
 <section class="grid" id="grid"></section>
 <p class="note" id="note">Productos, precios y fotos de ejemplo: conecta tu Google Sheet para mostrar los reales.</p>
 
-<section class="pay" style="background:var(--card)">
-<h2>Cómo pagar</h2>
-<p>Paga por Yape, Plin o transferencia y envía tu comprobante por WhatsApp para confirmar tu pedido.</p>
-<div class="methods">
-<div class="m"><b>Yape / Plin</b><span>Tu número aquí</span><button class="copy" data-v="Tu número aquí">Copiar</button></div>
-<div class="m"><b>Transferencia (cuenta)</b><span>Tu número de cuenta aquí</span><button class="copy" data-v="Tu número de cuenta aquí">Copiar</button></div>
-<div class="m"><b>Transferencia (CCI)</b><span>Tu CCI aquí</span><button class="copy" data-v="Tu CCI aquí">Copiar</button></div>
+<section class="envios">
+<h2>Tiempos de entrega</h2>
+<div class="icon-grid">
+<div class="ic"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg></span><div><b>Lima y Callao</b><span>24 a 48 horas</span></div></div>
+<div class="ic"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6-5.5-6-10a6 6 0 1 1 12 0c0 4.5-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg></span><div><b>Provincias</b><span>Puede demorar más, según el transporte</span></div></div>
+<div class="ic"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.8v.4"/></svg></span><div><b>Flete de envío</b><span>El precio no incluye flete de envío</span></div></div>
 </div>
 </section>
 
+<section class="pay" style="background:var(--card)">
+<h2>Cómo pagar</h2>
+<p>Elige tu producto, paga y envíanos el comprobante. Así de simple.</p>
+<ol class="steps">
+<li><span>1</span>Elige tu producto y pídelo por WhatsApp</li>
+<li><span>2</span>Paga por Yape, Plin o transferencia</li>
+<li><span>3</span>Envía tu comprobante por WhatsApp</li>
+</ol>
+<div class="chips-pago"><span class="chip-p"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg>Yape</span><span class="chip-p"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg>Plin</span><span class="chip-p"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10l9-6 9 6M5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 20h18"/></svg>Transferencia</span><span class="chip-p"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg>Confirmación por WhatsApp</span></div>
+<!-- DATOS DE PAGO (ocultos por ahora). Para mostrarlos: escribe tus datos y borra el signo de apertura del comentario (arriba) y el de cierre (abajo).
+<div class="methods">
+<div class="m"><b><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg>Yape / Plin</b><span>Tu número aquí</span><button class="copy" data-v="Tu número aquí">Copiar</button></div>
+<div class="m"><b><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10l9-6 9 6M5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 20h18"/></svg>Transferencia (cuenta)</b><span>Tu número de cuenta aquí</span><button class="copy" data-v="Tu número de cuenta aquí">Copiar</button></div>
+<div class="m"><b><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10l9-6 9 6M5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 20h18"/></svg>Transferencia (CCI)</b><span>Tu CCI aquí</span><button class="copy" data-v="Tu CCI aquí">Copiar</button></div>
+</div>
+-->
+</section>
+
+<!-- UBICACIÓN Y SOPORTE TÉCNICO (oculta por ahora). Para mostrarla: completa los datos y borra el signo de apertura del comentario (arriba) y el de cierre (abajo).
 <section class="info">
 <div><h2>Ubicación, contacto y soporte técnico</h2>
 <p>Diagnóstico, mantenimiento e instalación de programas. Tu dirección, distrito y horario de atención aquí.</p></div>
 </section>
+-->
 </main>
 
 <footer><div class="wrap">CTRL+Z S.A.C. &mdash; Reiniciamos tu experiencia tecnológica.</div></footer>
 
+<script src="halloween/halloween.js" defer></script>
 <script src="js/app.js" defer></script>
 </body>
 </html>
