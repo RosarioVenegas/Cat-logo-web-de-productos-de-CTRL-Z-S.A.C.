@@ -14,6 +14,7 @@ body.hw{
 
 /* Capa de fondo: niebla, lápidas y Zeta (detrás del contenido) */
 .hw-fondo{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+.hw-frente{position:fixed;inset:0;z-index:5;overflow:hidden;pointer-events:none}
 .hw-mist{position:absolute;width:70vw;height:32vh;border-radius:50%;filter:blur(24px);
   background:radial-gradient(closest-side,rgba(124,224,74,.26),transparent);
   animation:hw-drift 26s ease-in-out infinite alternate}
@@ -22,6 +23,7 @@ body.hw{
 @keyframes hw-drift{to{transform:translateX(40vw)}}
 .hw-lapida{position:absolute;bottom:0;width:100px;height:auto}
 .hw-zeta{position:absolute;right:3%;bottom:0;width:150px;height:auto;animation:hw-bob 4s ease-in-out infinite}
+.hw-zeta{pointer-events:auto;cursor:pointer}
 @keyframes hw-bob{50%{transform:translateY(-12px)}}
 .hw-say{position:absolute;right:calc(3% + 100px);bottom:150px;background:#fff;color:#1C1C1C;font-weight:700;
   font-size:.85rem;border-radius:14px 14px 4px 14px;padding:8px 12px;max-width:170px;box-shadow:0 4px 18px rgba(0,0,0,.35)}

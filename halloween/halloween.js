@@ -7,15 +7,19 @@
   document.body.classList.add("hw");
 
   // Fondo: niebla verde, lápidas con chistes de tecnología y Zeta
-  var fondo=document.createElement("div");
-  fondo.className="hw-fondo"; fondo.setAttribute("aria-hidden","true");
-  fondo.innerHTML=
-    '<div class="hw-mist hw-m1"></div><div class="hw-mist hw-m2"></div>'+
-    '<img class="hw-lapida" src="img/Tumba1ControlZ.png" alt="" style="left:3%">'+
-    '<img class="hw-lapida" src="img/Tumba1ControlZ.png" alt="" style="left:calc(3% + 110px)">'+
-    '<div class="hw-say">¡Revivimos tu PC! 🧟</div>'+
-    '<img class="hw-zeta" src="img/zeta.png" alt="">';
-  document.body.appendChild(fondo);
+ var fondo=document.createElement("div");
+fondo.className="hw-fondo"; fondo.setAttribute("aria-hidden","true");
+fondo.innerHTML='<div class="hw-mist hw-m1"></div><div class="hw-mist hw-m2"></div>';
+document.body.appendChild(fondo);
+
+var frente=document.createElement("div");
+frente.className="hw-frente";
+frente.innerHTML=
+  '<img class="hw-lapida" src="img/Tumba1ControlZ.png" alt="" style="left:3%">'+
+  '<img class="hw-lapida" src="img/Tumba2ControlZ.png" alt="" style="left:calc(3% + 110px)">'+
+  '<div class="hw-say"> ¿Dudas? ¡Te ayudo! 🧟</div>'+
+  '<a class="hw-zeta-link" href="https://wa.me/51902182909" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp"><img class="hw-zeta" src="img/zeta.png" alt=""></a>';
+document.body.appendChild(frente);
 
   // Arañitas que bajan por su hilo y vuelven a subir
   var capa=document.createElement("div");
@@ -29,3 +33,4 @@
   });
   document.body.appendChild(capa);
 })();
+//'<div class="hw-say"> ¿Dudas? ¡Te ayudo! 🧟</div>'+

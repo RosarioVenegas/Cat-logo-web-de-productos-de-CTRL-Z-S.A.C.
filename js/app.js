@@ -17,7 +17,7 @@ function norm(t){return String(t||"").normalize("NFD").replace(/[\u0300-\u036f]/
 function yes(v){return /^(si|true|1|x|verdadero)$/.test(norm(v))}
 function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
 function num(v){return parseFloat(String(v||"").replace(/[^0-9.]/g,""))||0}
-function money(n){return "S/ "+n.toLocaleString("es-PE",{maximumFractionDigits:2})}
+function money(n){return "S/ "+n.toLocaleString("es-PE",{minimumFractionDigits:2,maximumFractionDigits:2})}
 function wa(txt){return "https://wa.me/"+CONFIG.whatsapp+"?text="+encodeURIComponent(txt)}
 function parseCSV(t){
   var rows=[],row=[],f="",q=false;
@@ -38,7 +38,7 @@ function toObjs(rows){
 }
 var laptop='<svg viewBox="0 0 64 64" aria-hidden="true"><rect x="12" y="14" width="40" height="28" rx="3"/><path d="M6 48h52l-4 4H10z"/></svg>';
 var box='<svg viewBox="0 0 64 64" aria-hidden="true"><rect x="12" y="16" width="40" height="32" rx="4"/><path d="M12 28h40"/></svg>';
-var grid=document.getElementById("grid"), filtro="todo";
+var grid=document.getElementById("grid"), filtro="todo", busqueda="";
 document.getElementById("waTop").href=wa("Hola, quisiera información sobre sus productos.");
 
 function card(p){
@@ -48,12 +48,13 @@ function card(p){
   var src=p.imagen_url||(p.sku?"img/productos/"+p.sku+".jpg":"");
   var img=src?'<img loading="lazy" src="'+esc(src)+'" alt="'+esc(p.nombre)+'" onerror="this.remove()">':"";
   var icono=(c==="laptops"||c==="computadoras de mesa")?laptop:box;
-  return '<article class="card" data-c="'+esc(c)+'" data-o="'+(of?1:0)+'"><div class="ph">'+icono+img+(of?'<span class="tag">Oferta</span>':'')+'</div><div class="body"><h3>'+esc(p.nombre)+'</h3><p class="spec">'+esc(p.especificaciones||"")+'</p><div class="row"><span class="price">'+(of?'<span class="old">'+money(num(p.precio))+'</span>':'')+money(final)+'</span><span class="stock">'+(agotado?"Agotado":(isNaN(stock)?"":"Disponible"))+'</span></div><a class="buy'+(agotado?" off":"")+'" href="'+wa("Hola, me interesa: "+p.nombre+" ("+money(final)+"). ¿Está disponible?")+'" target="_blank" rel="noopener">'+(agotado?"Agotado":"Pedir por WhatsApp")+'</a></div></article>';
+  return '<article class="card" data-c="'+esc(c)+'" data-o="'+(of?1:0)+'" data-b="'+esc(norm(p.nombre+" "+(p.especificaciones||"")+" "+p.categoria))+'"><div class="ph">'+icono+img+(of?'<span class="tag">Oferta</span>':'')+'</div><div class="body"><h3>'+esc(p.nombre)+'</h3><p class="spec">'+esc(p.especificaciones||"")+'</p><div class="row"><span class="price">'+(of?'<span class="old">'+money(num(p.precio))+'</span>':'')+money(final)+'</span><span class="stock">'+(agotado?"Agotado":(isNaN(stock)?"":"Disponible"))+'</span></div><a class="buy'+(agotado?" off":"")+'" href="'+wa("Hola, me interesa: "+p.nombre+" ("+money(final)+"). ¿Está disponible?")+'" target="_blank" rel="noopener">'+(agotado?"Agotado":"Pedir por WhatsApp")+'</a></div></article>';
 }
 function aplicar(){
   var visibles=0;
   document.querySelectorAll(".card").forEach(function(el){
-    var ok=filtro==="todo"||(filtro==="ofertas"?el.dataset.o==="1":el.dataset.c===filtro);
+    var okCat=filtro==="todo"||(filtro==="ofertas"?el.dataset.o==="1":el.dataset.c===filtro);
+    var ok=okCat&&el.dataset.b.indexOf(busqueda)!==-1;
     el.hidden=!ok; if(ok)visibles++;
   });
   var m=document.getElementById("vacio");
@@ -61,7 +62,7 @@ function aplicar(){
 }
 function render(lista){
   var act=lista.filter(function(p){return p.nombre&&num(p.precio)>0&&!/^(no|false|0)$/.test(norm(p.activo))});
-  grid.innerHTML=act.map(card).join("")+'<p class="msg" id="vacio" hidden>No hay productos en esta sección por ahora.</p>';
+  grid.innerHTML=act.map(card).join("")+'<p class="msg" id="vacio" hidden>No hay productos que coincidan por ahora.</p>';
   aplicar();
 }
 document.querySelectorAll(".chips button").forEach(function(b){
@@ -75,6 +76,9 @@ document.querySelectorAll(".copy").forEach(function(b){
     var done=function(){b.textContent="Copiado";setTimeout(function(){b.textContent="Copiar"},1500)};
     try{navigator.clipboard.writeText(b.dataset.v).then(done,done)}catch(e){done()}
   });
+});
+document.getElementById("buscar").addEventListener("input",function(e){
+  busqueda=norm(e.target.value); aplicar();
 });
 if(!CONFIG.sheetCsv){render(DEMO)}
 else{
