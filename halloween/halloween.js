@@ -18,7 +18,7 @@ frente.innerHTML=
   '<img class="hw-lapida" src="img/Tumba1ControlZ.png" alt="" style="left:3%">'+
   
   '<div class="hw-say"> ¿Dudas? ¡Te ayudo! 🧟</div>'+
-  '<a class="hw-zeta-link" href="https://wa.me/51902182909" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp"><img class="hw-zeta" src="img/zeta-presentacion.png" alt=""></a>';
+  '<a class="hw-zeta-link" href="https://wa.me/51972055232" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp"><img class="hw-zeta" src="img/zeta-presentacion.png" alt=""></a>';
 document.body.appendChild(frente);
 
   // Arañitas que bajan por su hilo y vuelven a subir
