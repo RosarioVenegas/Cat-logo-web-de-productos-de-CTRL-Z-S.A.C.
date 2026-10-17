@@ -5,26 +5,23 @@ box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:en
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
 h1,h2,h3,.brand{font-family:"Space Grotesk",system-ui,sans-serif;margin:0}
-.wrap{max-width:2000px;margin:0 auto;padding:0 18px}
+.wrap{max-width:1600px;margin:0 auto;padding:0 18px}
 
-/* ===== Cabecera ===== */
-header{background:transparent; border-bottom:0 }
-.bar{display:flex;align-items:center;justify-content:space-between;background:#fff;padding:5px 20px;border-radius:14px 14px 0px 0px;width:calc(100% - 36px);max-width:none;margin:0 auto}
-.brand{font-size:1.25rem;font-weight:700;letter-spacing:-.01em}
-.brand i{font-style:normal;color:#1E3A8A}.brand small{font-size:.6rem;font-weight:500;color:#5F6B7A;margin-left:5px}
-.buscar{flex:1;max-width:420px;margin-left:16px;padding:9px 16px;border:1.5px solid var(--line);border-radius:999px;font:inherit;font-size:.9rem;background:#fff;color:var(--ink)}
-.buscar:focus{outline:none;border-color:var(--accent)}
-
-@media (max-width:600px){
-  .buscar{margin-left:10px;padding:7px 12px;font-size:.85rem}
-}
-.hero{padding:44px 0 26px}
-.hero h1{font-size:clamp(2rem,6vw,3.4rem);line-height:1.05;letter-spacing:-.02em;max-width:15ch}
-.hero p{color:var(--mute);max-width:46ch;margin:14px 0 0}
+/* ===== Cabecera (queda fija arriba al bajar) ===== */
+header{position:sticky;top:0;z-index:10;background:transparent;border-bottom:0}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#140A2E;padding:5px 20px;border-radius:0;width:calc(100% - 36px);max-width:none;margin:0 auto}
+.brand{display:flex;align-items:center;font-size:1.25rem;font-weight:700;letter-spacing:-.01em;white-space:nowrap}.brand i{font-style:normal;color:#1E3A8A}.brand small{font-size:.6rem;font-weight:500;color:#5F6B7A;margin-left:5px}
+.buscador{display:flex;align-items:center;border:1.5px solid transparent;border-radius:999px;padding:2px;background:transparent;transition:border-color .2s,background .2s}
+.buscador.abierto{border-color:rgba(255,255,255,.35);background:rgba(255,255,255,.12)}
+.buscar{width:0;padding:0;border:0;opacity:0;visibility:hidden;outline:none;background:transparent;font:inherit;font-size:.9rem;color:#fff;transition:width .25s,opacity .25s}
+.buscar::placeholder{color:#CDBEF5}
+.buscador.abierto .buscar{width:200px;padding:0 6px 0 12px;opacity:1;visibility:visible}
+.lupa{flex:none;background:transparent;border:0;color:#fff;cursor:pointer;padding:6px;display:grid;place-items:center;border-radius:50%}
+.lupa:hover{color:#B77CFF}
 
 /* ===== Banner principal ===== */
-.banner-img{max-width:2000px;margin:0 auto;padding:0 18px}
-.banner-img img{display:block;width:100%;height:auto;border-radius:0px 0px 14px 14px}
+.banner-img{max-width:1600px;margin:0 auto;padding:0 18px}
+.banner-img img{display:block;width:100%;height:auto;border-radius:0 0 14px 14px}
 .banner{background:#0B1226;color:#fff;overflow:hidden}
 .bn{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:34px 18px;flex-wrap:wrap}
 .bn h1{font-size:clamp(2rem,6vw,3.2rem);line-height:1.05;letter-spacing:-.02em;max-width:14ch}
@@ -33,14 +30,16 @@ header{background:transparent; border-bottom:0 }
 .bn img{width:min(280px,42vw);height:auto;background:radial-gradient(circle,#1E3A8A 0,rgba(30,58,138,0) 68%)}
 .hero{display:none}
 
-/* ===== Filtros de secciones ===== */
-.chips{display:flex;gap:8px;margin:24px 0 18px;flex-wrap:wrap}
-.chips button{font:inherit;font-weight:700;font-size:.9rem;border:0;border-radius:999px;padding:8px 16px;background:var(--chip);color:var(--ink);cursor:pointer}
-.chips button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
-button:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+/* ===== Categorías (ahora viven en la cabecera) ===== */
+.menu-btn{display:none}
+.chips{display:flex;margin-left:auto;justify-content:flex-end;gap:22px;padding:0;background:transparent}
+.chips button{font:inherit;font-weight:600;font-size:.9rem;background:transparent;border:0;border-radius:0;box-shadow:none;padding:8px 2px;color:#fff;cursor:pointer;white-space:nowrap}
+.chips button:hover{color:#B77CFF}
+.chips button[aria-pressed="true"]{color:#B77CFF}
+button:focus-visible,a:focus-visible{outline:3px solid #B77CFF;outline-offset:2px}
 
 /* ===== Tarjetas de producto ===== */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin-top:24px}
 .card{background:#fff;color:#1C1C1C;--ink:#1C1C1C;--mute:#4A5A75;border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
 .ph{aspect-ratio:1/1;background:#fff;border-bottom:1px solid #EDF1F6;display:grid;place-items:center;position:relative}
 .ph svg{width:96px;height:96px;stroke:#C3CCD8;fill:none;stroke-width:1.5}
@@ -91,11 +90,40 @@ footer{padding:34px 0 40px;color:var(--mute);font-size:.9rem}
 .ico{flex:none;width:44px;height:44px;border-radius:12px;background:rgba(0,123,255,.12);display:grid;place-items:center}
 .ico svg,.chip-p svg,.m b svg{fill:none;stroke:#1E3A8A;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .ico svg{width:24px;height:24px}
+.ico img{width:100%;height:100%;object-fit:contain;display:block}
 .steps{list-style:none;margin:0 0 16px;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
 .steps li{display:flex;align-items:center;gap:10px;font-weight:600}
 .steps li span{flex:none;width:28px;height:28px;border-radius:50%;background:#1E3A8A;color:#fff;display:grid;place-items:center;font-size:.9rem}
 .chips-pago{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
 .chip-p{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:.9rem;font-weight:600;background:#fff;color:#1C1C1C}
 .chip-p svg{width:18px;height:18px}
+.chip-p img{width:20px;height:20px;flex-shrink:0}
 .m b{display:flex;align-items:center;gap:8px}
 .m b svg{width:20px;height:20px;flex:none}
+
+/* ===== Celular: tarjetas de dos en dos ===== */
+@media (max-width:600px){
+  .grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .body{padding:10px}
+  .body h3{font-size:.85rem}
+  .spec{font-size:.78rem}
+  .price{font-size:1.1rem}
+  .row{flex-wrap:wrap;gap:4px}
+  .buy{font-size:.8rem;padding:8px}
+}
+
+/* ===== Pantallas medianas y celular: categorías en botón "Menú" ===== */
+@media (max-width:1200px){
+  .bar{position:relative;padding:8px 12px;gap:8px}
+  .brand{font-size:1.05rem}
+  .menu-btn{display:inline-flex;align-items:center;gap:6px;margin-left:auto;background:transparent;border:0;font:inherit;font-weight:700;color:#fff;cursor:pointer;padding:6px}
+  .chips{display:none;position:absolute;top:100%;left:0;right:0;flex:none;flex-direction:column;justify-content:flex-start;gap:0;background:#140A2E;padding:6px 20px 10px;box-shadow:0 8px 18px rgba(0,0,0,.35);z-index:20}
+  .chips.abierto{display:flex}
+  .chips button{text-align:left;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.15)}}
+
+/* ===== Celular: al abrir la lupa, la búsqueda ocupa toda la cabecera ===== */
+@media (max-width:600px){
+  .bar.buscando .brand,.bar.buscando .menu-btn{display:none}
+  .bar.buscando .buscador{flex:1}
+  .bar.buscando .buscador .buscar{flex:1;width:auto}
+}
