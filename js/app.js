@@ -1,6 +1,6 @@
 /* ===== CONFIGURACIÓN: solo cambia estas dos líneas ===== */
 var CONFIG={
-  whatsapp:"51902182909",   // tu número con 51 al inicio, sin espacios ni +
+  whatsapp:"51972055232",   // tu número con 51 al inicio, sin espacios ni +
   sheetCsv:"https://docs.google.com/spreadsheets/d/e/2PACX-1vSwgSQrSAbqm9nZbIb8mS-a6c9EL3zyKrD5V_x4tUbj7vVMKBNNCdVunQxfD0lfe_oXjKTLdWdL_o1A/pub?gid=1926199547&single=true&output=csv"               // enlace CSV de tu Google Sheet publicado (vacío = productos de ejemplo)
 };
 /* ======================================================= */
