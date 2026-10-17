@@ -65,21 +65,49 @@ function render(lista){
   grid.innerHTML=act.map(card).join("")+'<p class="msg" id="vacio" hidden>No hay productos que coincidan por ahora.</p>';
   aplicar();
 }
-document.querySelectorAll(".chips button").forEach(function(b){
+document.querySelectorAll(".chips button[data-f]").forEach(function(b){
   b.addEventListener("click",function(){
-    document.querySelectorAll(".chips button").forEach(function(o){o.setAttribute("aria-pressed",o===b)});
-    filtro=b.dataset.f; aplicar();
+    document.querySelectorAll(".chips button[data-f]").forEach(function(o){o.setAttribute("aria-pressed",o===b)});
+    filtro=b.dataset.f;
+    busqueda=""; document.getElementById("buscar").value="";
+    aplicar();
   });
 });
 document.querySelectorAll(".copy").forEach(function(b){
   b.addEventListener("click",function(){
     var done=function(){b.textContent="Copiado";setTimeout(function(){b.textContent="Copiar"},1500)};
+
     try{navigator.clipboard.writeText(b.dataset.v).then(done,done)}catch(e){done()}
   });
 });
 document.getElementById("buscar").addEventListener("input",function(e){
-  busqueda=norm(e.target.value); aplicar();
+  busqueda=norm(e.target.value);
+  if(busqueda){
+    filtro="todo";
+    document.querySelectorAll(".chips button[data-f]").forEach(function(o){o.setAttribute("aria-pressed",o.dataset.f==="todo")});
+  }
+  aplicar();
 });
+var menuBtn=document.getElementById("menuBtn"), menuCats=document.getElementById("menuCats");
+menuBtn.addEventListener("click",function(){
+  var abierto=menuCats.classList.toggle("abierto");
+  menuBtn.setAttribute("aria-expanded",abierto);
+});
+menuCats.addEventListener("click",function(e){
+  if(e.target.closest("button")){menuCats.classList.remove("abierto");menuBtn.setAttribute("aria-expanded","false")}
+});
+
+var lupaBtn=document.getElementById("lupaBtn"), buscador=document.getElementById("buscador"), 
+  inputBuscar=document.getElementById("buscar");
+  if(lupaBtn&&buscador){
+    lupaBtn.addEventListener("click",function(){
+      var abierto=buscador.classList.toggle("abierto");
+      buscador.closest(".bar").classList.toggle("buscando",abierto);
+      lupaBtn.setAttribute("aria-expanded",abierto);
+      if(abierto)inputBuscar.focus();
+    });
+}
+
 if(!CONFIG.sheetCsv){render(DEMO)}
 else{
   document.getElementById("note").hidden=true;

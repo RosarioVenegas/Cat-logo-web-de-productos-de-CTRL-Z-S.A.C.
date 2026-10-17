@@ -10,17 +10,11 @@
 </head>
 <body>
 <header><div class="wrap bar">
-<div class="brand">CTRL<i>+</i>Z<small>S.A.C.</small></div>
-<input class="buscar" type="search" id="buscar" placeholder="Buscar productos, marcas..." aria-label="Buscar productos">
-<a id="waTop" href="#" hidden></a>
-</div></header>
-
-<section class="banner-img">
-    <img src="img/ControlZBannerOctubre.png" alt="ControlZBannerOctubre"></section> 
-<main class="wrap">
-
-<div class="chips" role="group" aria-label="Filtrar por sección">
-<button data-f="todo" aria-pressed="true">Todo</button>
+<div class="brand"><img src="img/logo-blanco.png" alt="CTRL+Z S.A.C." height="60"></div>
+<button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menuCats">
+  <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>Menú
+</button>
+<div class="chips" id="menuCats" role="group" aria-label="Filtrar por sección"><button data-f="todo" aria-pressed="true">Todo</button>
 <button data-f="computadoras de mesa" aria-pressed="false">Computadoras de mesa</button>
 <button data-f="laptops" aria-pressed="false">Laptops</button>
 <button data-f="componentes" aria-pressed="false">Componentes</button>
@@ -28,6 +22,21 @@
 <button data-f="impresoras" aria-pressed="false">Impresoras</button>
 <button data-f="ofertas" aria-pressed="false">Ofertas</button>
 </div>
+<div class="buscador" id="buscador">
+  <input class="buscar" type="search" id="buscar" placeholder="Buscar productos, marcas..." aria-label="Buscar productos">
+  <button class="lupa" id="lupaBtn" type="button" aria-label="Buscar" aria-expanded="false">
+    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+  </button>
+</div>
+<div class="buscador" id="buscador"></div>
+<a id="waTop" href="#" hidden></a>
+</div></header>
+
+
+<section class="banner-img">
+    <img src="img/ControlZBannerOctubre.png" alt="ControlZBannerOctubre"></section> 
+<main class="wrap">
+
 
 <section class="grid" id="grid"></section>
 <p class="note" id="note">Productos, precios y fotos de ejemplo: conecta tu Google Sheet para mostrar los reales.</p>
@@ -35,10 +44,9 @@
 <section class="envios">
 <h2>Tiempos de entrega</h2>
 <div class="icon-grid">
-<div class="ic"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg></span><div><b>Lima y Callao</b><span>24 a 48 horas</span></div></div>
-<div class="ic"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6-5.5-6-10a6 6 0 1 1 12 0c0 4.5-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg></span><div><b>Provincias</b><span></span></div></div>
-<div class="ic"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.8v.4"/></svg></span><div><b>Flete de envío</b><span>El precio no incluye flete de envío</span></div></div>
-</div>
+<div class="ic"><span class="ico"><img src="img/iconos/entrega.png" alt="" width="40" height="40"></span><div><b>Lima y Callao</b><span>24 a 48 horas</span></div></div>
+<div class="ic"><span class="ico"><img src="img/iconos/envio.png" alt="" width="40" height="40"></span><div><b>Provincia</b></div></div>
+<div class="ic"><span class="ico"><img src="img/iconos/paquete.png" alt="" width="40" height="40"></span><div><b>Flete de envío</b><span>El precio no incluye flete de envío</span></div>
 </section>
 
 <section class="pay" style="background:var(--card)">
@@ -49,7 +57,10 @@
 <li><span>2</span>Paga por Yape, Plin o transferencia</li>
 <li><span>3</span>Envía tu comprobante por WhatsApp</li>
 </ol>
-<div class="chips-pago"><span class="chip-p"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg>Yape</span><span class="chip-p"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg>Plin</span><span class="chip-p"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10l9-6 9 6M5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 20h18"/></svg>Transferencia</span><span class="chip-p"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg>Confirmación por WhatsApp</span></div>
+<div class="chips-pago"><span class="chip-p"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg>Yape</span>
+    <span class="chip-p"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg>Plin</span>
+    <span class="chip-p"><img src="img/iconos/tarjeta.png" alt="" width="20" height="20">Transferencia</span></div>
+    <span class="chip-p"><img src="img/iconos/whatsapp.png" alt="" width="20" height="20">Confirmación por WhatsApp</span></div>
 <!-- DATOS DE PAGO (ocultos por ahora). Para mostrarlos: escribe tus datos y borra el signo de apertura del comentario (arriba) y el de cierre (abajo).
 <div class="methods">
 <div class="m"><b><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg>Yape / Plin</b><span>Tu número aquí</span><button class="copy" data-v="Tu número aquí">Copiar</button></div>
@@ -73,3 +84,21 @@
 <script src="js/app.js" defer></script>
 </body>
 </html>
+
+
+<!--<header><div class="wrap bar">
+<div class="brand">CTRL<i>+</i>Z<small>S.A.C.</small></div>
+
+<div class="chips" role="group" aria-label="Filtrar por sección">
+<button data-f="todo" aria-pressed="true">Todo</button>
+<button data-f="computadoras de mesa" aria-pressed="false">Computadoras de mesa</button>
+<button data-f="laptops" aria-pressed="false">Laptops</button>
+<button data-f="componentes" aria-pressed="false">Componentes</button>
+<button data-f="accesorios" aria-pressed="false">Accesorios</button>
+<button data-f="impresoras" aria-pressed="false">Impresoras</button>
+<button data-f="ofertas" aria-pressed="false">Ofertas</button>
+</div>
+
+<input class="buscar" type="search" id="buscar" placeholder="Buscar productos, marcas..." aria-label="Buscar productos">
+<a id="waTop" href="#" hidden></a>
+</div></header>

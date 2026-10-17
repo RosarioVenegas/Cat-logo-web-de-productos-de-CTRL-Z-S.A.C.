@@ -21,12 +21,27 @@ body.hw{
 .hw-m1{top:10%;left:-20%}
 .hw-m2{top:70%;left:-10%;animation-duration:32s}
 @keyframes hw-drift{to{transform:translateX(40vw)}}
-.hw-lapida{position:absolute;bottom:0;width:100px;height:auto}
+.hw-lapida{position:absolute;bottom:0;width:100px;height:auto
+}
+@media (max-width:700px){
+  .hw-lapida{display:none}
+  .hw-sp:nth-child(n+2){display:none}
+}
 .hw-zeta{position:absolute;right:3%;bottom:0;width:150px;height:auto;animation:hw-bob 4s ease-in-out infinite}
 .hw-zeta{pointer-events:auto;cursor:pointer}
+@media (max-width:700px){
+  .hw-zeta{width:80px;right:2%}
+}
+
 @keyframes hw-bob{50%{transform:translateY(-12px)}}
+
 .hw-say{position:absolute;right:calc(3% + 100px);bottom:150px;background:#fff;color:#1C1C1C;font-weight:700;
   font-size:.85rem;border-radius:14px 14px 4px 14px;padding:8px 12px;max-width:170px;box-shadow:0 4px 18px rgba(0,0,0,.35)}
+@media (max-width:700px){
+  .hw-zeta{width:80px;right:2%}
+  .hw-say{right:calc(2% + 70px);bottom:70px;font-size:.75rem;padding:6px 10px;max-width:130px}
+}
+
 
 /* Capa de arañitas: cuelgan del borde de arriba, por encima del contenido (sin bloquear clics) */
 .hw-aranas{position:fixed;inset:0;z-index:5;overflow:hidden;pointer-events:none}
@@ -34,8 +49,8 @@ body.hw{
 .hw-sp span{position:absolute;bottom:-16px;left:-10px;font-size:22px;line-height:1}
 @keyframes hw-drop{0%{height:0}30%{height:var(--h)}62%{height:var(--h)}95%{height:0}100%{height:0}}
 
-@media (max-width:700px){.hw-say{display:none}.hw-tomb{display:none}}
 @media (prefers-reduced-motion:reduce){
   .hw-mist,.hw-zeta{animation:none}
   .hw-sp{display:none}
 }
+
