@@ -41,6 +41,16 @@ var box='<svg viewBox="0 0 64 64" aria-hidden="true"><rect x="12" y="16" width="
 var grid=document.getElementById("grid"), filtro="todo", busqueda="";
 document.getElementById("waTop").href=wa("Hola, quisiera información sobre sus productos.");
 
+/* Mascota Zeta: botón flotante de WhatsApp. La imagen y la frase las define el tema del mes
+   (temas/calendario.js); si no hay tema, usa la Zeta normal. */
+(function(){
+  var c=document.createElement("div");
+  c.className="mascota";
+  c.innerHTML=(TEMA.frase?'<div class="mascota-frase">'+esc(TEMA.frase)+'</div>':"")+
+    '<a class="mascota-link" href="'+wa("Hola, quisiera información sobre sus productos.")+'" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp"><img src="'+esc(TEMA.mascota)+'" alt=""></a>';
+  document.body.appendChild(c);
+})();
+
 function card(p){
   var c=norm(p.categoria), of=yes(p.en_oferta)&&num(p.precio_oferta)>0, stock=parseInt(p.stock,10);
   var agotado=!isNaN(stock)&&stock<=0;

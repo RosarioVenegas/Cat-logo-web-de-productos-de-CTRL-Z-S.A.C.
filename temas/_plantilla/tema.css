@@ -1,0 +1,42 @@
+/* =====================================================================
+   PLANTILLA DE TEMA  (copia esta carpeta para crear el tema de un mes)
+
+   PASOS
+   1. Copia la carpeta "_plantilla" y ponle el nombre del mes:
+        temas/2026-11-noviembre
+   2. Guarda el banner del mes dentro de esa carpeta (ej: banner.webp).
+   3. En ESTE archivo, quita los símbolos de comentario (la barra con
+      asterisco, al inicio y al final) de cada línea que quieras cambiar
+      y escribe tus colores. Lo que dejes comentado se queda como en la base.
+   4. Agrega el tema en temas/calendario.js (carpeta, fechas y banner).
+   5. Pruébalo antes de su fecha: index.html?tema=2026-11-noviembre
+   ===================================================================== */
+
+/* ---- 1. COLORES ---- */
+:root{
+  /* Página */
+  /* --page-ink:#5A6B85; */        /* textos sueltos sobre el fondo y pie de página */
+
+  /* Cabecera (el logo es BLANCO: la cabecera siempre debe ser oscura) */
+  /* --header-bg:#0F1B3D; */       /* fondo de la cabecera y del menú en celular */
+  /* --header-accent:#7FB2FF; */   /* categoría activa y color al pasar el mouse */
+  /* --header-muted:#B8C6E3; */    /* texto de ayuda del buscador */
+
+  /* Botones y detalles */
+  /* --accent:#1E3A8A; */          /* botón "Pedir por WhatsApp", pasos, íconos */
+  /* --accent-soft:rgba(0,123,255,.12); */ /* fondo suave detrás de los íconos */
+
+  /* Tarjetas */
+  /* --card-body:#E3EDFB; */       /* parte de abajo de cada tarjeta */
+  /* --price:#3a679b; */           /* color del precio */
+  /* --tag-bg:#E11D1D; */          /* etiqueta "Oferta" */
+}
+
+/* ---- 2. FONDO DE LA PÁGINA (opcional) ----
+   Un color liso o un degradado. Quita el comentario para usarlo. */
+/*
+body{
+  background:linear-gradient(180deg,#0F1B3D 0%,#1E3A8A 100%);
+  background-attachment:fixed;
+}
+*/

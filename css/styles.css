@@ -1,105 +1,140 @@
-/* ===== Variables de color y base ===== */
-:root{--bg:#EDF2F9;--card:#FFFFFF;--ink:#1C1C1C;--mute:#5A6B85;--line:#C9D7EC;--accent:#1E3A8A;--accent-ink:#FFFFFF;--chip:#DCE6F4;color-scheme:light;
-box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+/* =====================================================================
+   ESTILOS BASE DE CTRL+Z
+   Los colores viven todos en las VARIABLES de abajo (:root).
+   Cada mes, el tema (carpeta temas/AAAA-MM-nombre/tema.css) cambia
+   solo esas variables. Aquí NO hace falta tocar nada para cambiar de mes.
+   ===================================================================== */
+
+/* ===== VARIABLES DE COLOR (valores por defecto, sin tema) ===== */
+:root{
+  /* Página */
+  --bg:#EDF2F9;              /* fondo de la página */
+  --page-ink:#5A6B85;        /* textos sueltos sobre el fondo: avisos y pie de página */
+
+  /* Cabecera (el logo es blanco, así que la cabecera siempre debe ser oscura) */
+  --header-bg:#0F1B3D;       /* fondo de la cabecera y del menú desplegable */
+  --header-ink:#FFFFFF;      /* texto, lupa y botón Menú */
+  --header-accent:#7FB2FF;   /* categoría activa y color al pasar el mouse */
+  --header-muted:#B8C6E3;    /* texto de ayuda del buscador */
+  --header-line:rgba(255,255,255,.15); /* rayitas del menú desplegable */
+
+  /* Botones y acentos */
+  --accent:#1E3A8A;          /* botones "Pedir por WhatsApp", números de pasos, íconos */
+  --accent-ink:#FFFFFF;      /* texto sobre el acento */
+  --accent-soft:rgba(0,123,255,.12); /* fondo suave detrás de los íconos */
+
+  /* Tarjetas de producto */
+  --card:#FFFFFF;            /* fondo de tarjetas y cajas blancas */
+  --card-body:#E3EDFB;       /* parte de abajo de cada tarjeta */
+  --price:#3a679b;           /* color del precio */
+  --tag-bg:#E11D1D;          /* etiqueta "Oferta" */
+  --tag-ink:#FFFFFF;
+
+  /* Texto y bordes generales */
+  --ink:#1C1C1C;
+  --mute:#5A6B85;
+  --line:#C9D7EC;
+
+  color-scheme:light;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)
+}
+
+/* ===== Base ===== */
 *{box-sizing:border-box}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
 h1,h2,h3,.brand{font-family:"Space Grotesk",system-ui,sans-serif;margin:0}
 .wrap{max-width:1600px;margin:0 auto;padding:0 18px}
+[hidden]{display:none !important} /* hace que "hidden" siempre gane (filtros y banner) */
 
 /* ===== Cabecera (queda fija arriba al bajar) ===== */
 header{position:sticky;top:0;z-index:10;background:transparent;border-bottom:0}
-.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#140A2E;padding:5px 20px;border-radius:0;width:calc(100% - 36px);max-width:none;margin:0 auto}
-.brand{display:flex;align-items:center;font-size:1.25rem;font-weight:700;letter-spacing:-.01em;white-space:nowrap}.brand i{font-style:normal;color:#1E3A8A}.brand small{font-size:.6rem;font-weight:500;color:#5F6B7A;margin-left:5px}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--header-bg);padding:5px 20px;border-radius:0;width:calc(100% - 36px);max-width:none;margin:0 auto}
+.brand{display:flex;align-items:center;white-space:nowrap}
+
+/* Buscador: lupa dentro de la caja, se expande al tocarla */
 .buscador{display:flex;align-items:center;border:1.5px solid transparent;border-radius:999px;padding:2px;background:transparent;transition:border-color .2s,background .2s}
 .buscador.abierto{border-color:rgba(255,255,255,.35);background:rgba(255,255,255,.12)}
-.buscar{width:0;padding:0;border:0;opacity:0;visibility:hidden;outline:none;background:transparent;font:inherit;font-size:.9rem;color:#fff;transition:width .25s,opacity .25s}
-.buscar::placeholder{color:#CDBEF5}
+.buscar{width:0;padding:0;border:0;opacity:0;visibility:hidden;outline:none;background:transparent;font:inherit;font-size:.9rem;color:var(--header-ink);transition:width .25s,opacity .25s}
+.buscar::placeholder{color:var(--header-muted)}
 .buscador.abierto .buscar{width:200px;padding:0 6px 0 12px;opacity:1;visibility:visible}
-.lupa{flex:none;background:transparent;border:0;color:#fff;cursor:pointer;padding:6px;display:grid;place-items:center;border-radius:50%}
-.lupa:hover{color:#B77CFF}
+.lupa{flex:none;background:transparent;border:0;color:var(--header-ink);cursor:pointer;padding:6px;display:grid;place-items:center;border-radius:50%}
+.lupa:hover{color:var(--header-accent)}
 
-/* ===== Banner principal ===== */
-.banner-img{max-width:1600px;margin:0 auto;padding:0 18px}
-.banner-img img{display:block;width:100%;height:auto;border-radius:0 0 14px 14px}
-.banner{background:#0B1226;color:#fff;overflow:hidden}
-.bn{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:34px 18px;flex-wrap:wrap}
-.bn h1{font-size:clamp(2rem,6vw,3.2rem);line-height:1.05;letter-spacing:-.02em;max-width:14ch}
-.bn p{color:#B8C6E3;max-width:44ch;margin:12px 0 20px}
-.go{display:inline-block;background:#007BFF;color:#fff;font-weight:700;text-decoration:none;border-radius:10px;padding:11px 22px}
-.bn img{width:min(280px,42vw);height:auto;background:radial-gradient(circle,#1E3A8A 0,rgba(30,58,138,0) 68%)}
-.hero{display:none}
-
-/* ===== Categorías (ahora viven en la cabecera) ===== */
+/* Categorías en la cabecera */
 .menu-btn{display:none}
 .chips{display:flex;margin-left:auto;justify-content:flex-end;gap:22px;padding:0;background:transparent}
-.chips button{font:inherit;font-weight:600;font-size:.9rem;background:transparent;border:0;border-radius:0;box-shadow:none;padding:8px 2px;color:#fff;cursor:pointer;white-space:nowrap}
-.chips button:hover{color:#B77CFF}
-.chips button[aria-pressed="true"]{color:#B77CFF}
-button:focus-visible,a:focus-visible{outline:3px solid #B77CFF;outline-offset:2px}
+.chips button{font:inherit;font-weight:600;font-size:.9rem;background:transparent;border:0;border-radius:0;box-shadow:none;padding:8px 2px;color:var(--header-ink);cursor:pointer;white-space:nowrap}
+.chips button:hover,.chips button[aria-pressed="true"]{color:var(--header-accent)}
+button:focus-visible,a:focus-visible{outline:3px solid var(--header-accent);outline-offset:2px}
+
+/* ===== Banner principal (la imagen la pone el tema del mes) ===== */
+.banner-img{max-width:1600px;margin:0 auto;padding:0 18px}
+.banner-img img{display:block;width:100%;height:auto;border-radius:0 0 14px 14px}
 
 /* ===== Tarjetas de producto ===== */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin-top:24px}
-.card{background:#fff;color:#1C1C1C;--ink:#1C1C1C;--mute:#4A5A75;border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.card{background:var(--card);color:#1C1C1C;--ink:#1C1C1C;--mute:#4A5A75;border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
 .ph{aspect-ratio:1/1;background:#fff;border-bottom:1px solid #EDF1F6;display:grid;place-items:center;position:relative}
 .ph svg{width:96px;height:96px;stroke:#C3CCD8;fill:none;stroke-width:1.5}
-.tag{position:absolute;top:10px;left:10px;font-size:.75rem;font-weight:700;background:#E11D1D;color:#fff;border-radius:6px;padding:2px 8px}
-.body{background:#E3EDFB;padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px;flex:1}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#fff;display:block}
+.tag{position:absolute;top:10px;left:10px;font-size:.75rem;font-weight:700;background:var(--tag-bg);color:var(--tag-ink);border-radius:6px;padding:2px 8px}
+.body{background:var(--card-body);padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px;flex:1}
 .body h3{font-size:1.05rem}
 .spec{color:var(--mute);font-size:.88rem;margin:0}
 .row{display:flex;align-items:flex-end;justify-content:space-between;margin-top:auto;padding-top:10px}
-.price{display:flex;flex-direction:column;white-space:nowrap;font-family:"Space Grotesk",sans-serif;font-size:1.4rem;font-weight:700;color:#3a679b}
-.old{font-size:.85rem;font-weight:400;color:var(--mute);text-decoration:line-through}
+.price{display:flex;flex-direction:column;white-space:nowrap;font-family:"Space Grotesk",sans-serif;font-size:1.4rem;font-weight:700;color:var(--price)}
+.old{text-decoration:line-through;color:#7A879C;font-size:.9rem;font-weight:500;margin-right:6px}
 .stock{font-size:.82rem;color:var(--mute)}
 .buy{display:block;text-align:center;text-decoration:none;font-weight:700;background:var(--accent);color:var(--accent-ink);border-radius:10px;padding:10px;margin-top:10px}
-.info{display:flex;gap:18px;align-items:center;flex-wrap:wrap;background:#fff;color:#1C1C1C;--ink:#1C1C1C;--mute:#5F6B7A}.zeta{width:120px;height:auto;border-radius:12px}
-
-/* ===== Pago y contacto ===== */
-.pay,.info{margin:44px 0 0;border:1px solid var(--line);border-radius:14px;padding:22px}
-.pay h2,.info h2{font-size:1.4rem;margin-bottom:6px}
-.pay>p,.info p{color:var(--mute);margin:0 0 16px}
-.methods{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
-.m{border:1px solid var(--line);border-radius:10px;padding:12px 14px}
-.m b{display:block}
-.m span{display:block;color:var(--mute);font-size:.9rem;word-break:break-all;margin:2px 0 8px}
-.copy{font:inherit;font-size:.85rem;font-weight:700;border:1.5px solid var(--ink);background:transparent;color:var(--ink);border-radius:8px;padding:5px 12px;cursor:pointer}
-
-/* ===== Pie de página ===== */
-footer{padding:34px 0 40px;color:var(--mute);font-size:.9rem}
-.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#fff;display:block}
-.old{text-decoration:line-through;color:#7A879C;font-size:.9rem;margin-right:6px;font-weight:500}
-.msg{grid-column:1/-1;color:var(--mute);padding:20px 0}
 .buy.off{background:#9AA7BA;pointer-events:none}
-.note{font-size:.8rem;color:var(--mute);margin-top:18px}
-@media (prefers-reduced-motion:no-preference){.copy,.buy,.chips button{transition:transform .12s}.copy:active,.buy:active{transform:scale(.97)}}
-
-/* ===== Arreglo de filtros: el atributo hidden debe ganarle a display:flex ===== */
-[hidden]{display:none !important}
+.msg{grid-column:1/-1;color:var(--page-ink);padding:20px 0}
+.note{font-size:.8rem;color:var(--page-ink);margin-top:18px}
 
 /* ===== Tiempos de entrega ===== */
 .envios{margin:44px 0 0;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px}
 .envios h2{font-size:1.4rem;margin-bottom:6px}
 .envios p{margin:4px 0;color:var(--mute)}
 .envios b{color:var(--ink)}
-
-/* ===== Iconos en entrega y pago ===== */
 .icon-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:14px}
-.ic{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:#fff;color:#1C1C1C}
+.ic{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:var(--card);color:#1C1C1C}
 .ic b{display:block}
-.ic span:not(.ico){display:block;color:#1E3A8A;font-size:.9rem}
-.ico{flex:none;width:44px;height:44px;border-radius:12px;background:rgba(0,123,255,.12);display:grid;place-items:center}
-.ico svg,.chip-p svg,.m b svg{fill:none;stroke:#1E3A8A;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.ic span:not(.ico){display:block;color:var(--accent);font-size:.9rem}
+.ico{flex:none;width:44px;height:44px;border-radius:12px;background:var(--accent-soft);display:grid;place-items:center}
 .ico svg{width:24px;height:24px}
 .ico img{width:100%;height:100%;object-fit:contain;display:block}
+.ico svg,.chip-p svg,.m b svg{fill:none;stroke:var(--accent);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+/* ===== Pago y contacto ===== */
+.pay,.info{margin:44px 0 0;border:1px solid var(--line);border-radius:14px;padding:22px}
+.pay h2,.info h2{font-size:1.4rem;margin-bottom:6px}
+.pay>p,.info p{color:var(--mute);margin:0 0 16px}
+.info{display:flex;gap:18px;align-items:center;flex-wrap:wrap;background:var(--card);color:#1C1C1C;--ink:#1C1C1C;--mute:#5F6B7A}
 .steps{list-style:none;margin:0 0 16px;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
 .steps li{display:flex;align-items:center;gap:10px;font-weight:600}
-.steps li span{flex:none;width:28px;height:28px;border-radius:50%;background:#1E3A8A;color:#fff;display:grid;place-items:center;font-size:.9rem}
+.steps li span{flex:none;width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-size:.9rem}
 .chips-pago{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
-.chip-p{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:.9rem;font-weight:600;background:#fff;color:#1C1C1C}
+.chip-p{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:.9rem;font-weight:600;background:var(--card);color:#1C1C1C}
 .chip-p svg{width:18px;height:18px}
 .chip-p img{width:20px;height:20px;flex-shrink:0}
+.methods{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.m{border:1px solid var(--line);border-radius:10px;padding:12px 14px}
 .m b{display:flex;align-items:center;gap:8px}
 .m b svg{width:20px;height:20px;flex:none}
+.m span{display:block;color:var(--mute);font-size:.9rem;word-break:break-all;margin:2px 0 8px}
+.copy{font:inherit;font-size:.85rem;font-weight:700;border:1.5px solid var(--ink);background:transparent;color:var(--ink);border-radius:8px;padding:5px 12px;cursor:pointer}
+
+/* ===== Pie de página ===== */
+footer{padding:34px 0 40px;color:var(--page-ink);font-size:.9rem}
+@media (prefers-reduced-motion:no-preference){.copy,.buy,.chips button{transition:transform .12s}.copy:active,.buy:active{transform:scale(.97)}}
+
+/* ===== Mascota Zeta (botón flotante de WhatsApp; la imagen y la frase las define el tema) ===== */
+.mascota{position:fixed;right:3%;bottom:0;z-index:5;pointer-events:none}
+.mascota-link{display:block;pointer-events:auto;cursor:pointer}
+.mascota-link img{display:block;width:150px;height:auto;animation:mascota-bob 4s ease-in-out infinite}
+@keyframes mascota-bob{50%{transform:translateY(-12px)}}
+.mascota-frase{position:absolute;right:100px;bottom:150px;background:#fff;color:#1C1C1C;font-weight:700;font-size:.85rem;border-radius:14px 14px 4px 14px;padding:8px 12px;width:max-content;max-width:170px;box-shadow:0 4px 18px rgba(0,0,0,.35)}
+@media (prefers-reduced-motion:reduce){.mascota-link img{animation:none}}
 
 /* ===== Celular: tarjetas de dos en dos ===== */
 @media (max-width:600px){
@@ -115,15 +150,22 @@ footer{padding:34px 0 40px;color:var(--mute);font-size:.9rem}
 /* ===== Pantallas medianas y celular: categorías en botón "Menú" ===== */
 @media (max-width:1200px){
   .bar{position:relative;padding:8px 12px;gap:8px}
-  .brand{font-size:1.05rem}
-  .menu-btn{display:inline-flex;align-items:center;gap:6px;margin-left:auto;background:transparent;border:0;font:inherit;font-weight:700;color:#fff;cursor:pointer;padding:6px}
-  .chips{display:none;position:absolute;top:100%;left:0;right:0;flex:none;flex-direction:column;justify-content:flex-start;gap:0;background:#140A2E;padding:6px 20px 10px;box-shadow:0 8px 18px rgba(0,0,0,.35);z-index:20}
+  .menu-btn{display:inline-flex;align-items:center;gap:6px;margin-left:auto;background:transparent;border:0;font:inherit;font-weight:700;color:var(--header-ink);cursor:pointer;padding:6px}
+  .chips{display:none;position:absolute;top:100%;left:0;right:0;flex:none;flex-direction:column;justify-content:flex-start;gap:0;background:var(--header-bg);padding:6px 20px 10px;box-shadow:0 8px 18px rgba(0,0,0,.35);z-index:20}
   .chips.abierto{display:flex}
-  .chips button{text-align:left;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.15)}}
+  .chips button{text-align:left;padding:12px 0;border-bottom:1px solid var(--header-line)}
+}
 
 /* ===== Celular: al abrir la lupa, la búsqueda ocupa toda la cabecera ===== */
 @media (max-width:600px){
   .bar.buscando .brand,.bar.buscando .menu-btn{display:none}
   .bar.buscando .buscador{flex:1}
   .bar.buscando .buscador .buscar{flex:1;width:auto}
+}
+
+/* ===== Celular: mascota más pequeña ===== */
+@media (max-width:700px){
+  .mascota{right:2%}
+  .mascota-link img{width:80px}
+  .mascota-frase{right:70px;bottom:70px;font-size:.75rem;padding:6px 10px;max-width:130px}
 }

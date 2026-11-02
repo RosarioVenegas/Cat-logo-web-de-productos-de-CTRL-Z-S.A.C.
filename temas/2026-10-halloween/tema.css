@@ -1,0 +1,55 @@
+/* =====================================================================
+   TEMA: HALLOWEEN 2026  (Zeta zombie)
+   Activo: del 1 de octubre al 1 de noviembre de 2026 (ver temas/calendario.js)
+   Para quitarlo no hace falta borrar nada: se apaga solo al terminar las fechas.
+   ===================================================================== */
+
+/* ---- 1. COLORES (estas variables pisan las de css/styles.css) ---- */
+:root{
+  --page-ink:#CDBEF5;        /* textos sueltos sobre el fondo oscuro */
+  --header-bg:#140A2E;       /* cabecera morada oscura */
+  --header-accent:#B77CFF;   /* categoría activa */
+  --header-muted:#CDBEF5;    /* texto de ayuda del buscador */
+}
+
+/* ---- 2. FONDO DE LA PÁGINA (estrellitas + degradado) ---- */
+body{
+  background:
+    radial-gradient(1.5px 1.5px at 20px 30px,rgba(255,255,255,.55),transparent),
+    radial-gradient(1px 1px at 90px 140px,rgba(255,255,255,.4),transparent),
+    radial-gradient(1.5px 1.5px at 200px 80px,rgba(255,255,255,.6),transparent),
+    linear-gradient(180deg,#140A2E 0%,#1E1048 50%,#0E1A3C 100%);
+  background-size:260px 260px,260px 260px,260px 260px,100% 100%;
+  background-attachment:fixed;
+}
+
+/* ---- 3. DECORACIÓN (la crea decoracion.js) ---- */
+.deco-fondo{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+.deco-frente{position:fixed;inset:0;z-index:5;overflow:hidden;pointer-events:none}
+
+/* Niebla verde */
+.deco-niebla{position:absolute;width:70vw;height:32vh;border-radius:50%;filter:blur(24px);
+  background:radial-gradient(closest-side,rgba(124,224,74,.26),transparent);
+  animation:deco-niebla 26s ease-in-out infinite alternate}
+.deco-niebla.n1{top:10%;left:-20%}
+.deco-niebla.n2{top:70%;left:-10%;animation-duration:32s}
+@keyframes deco-niebla{to{transform:translateX(40vw)}}
+
+/* Lápida */
+.deco-lapida{position:absolute;bottom:0;width:100px;height:auto}
+
+/* Arañitas que bajan por su hilo y vuelven a subir */
+.deco-aranas{position:fixed;inset:0;z-index:5;overflow:hidden;pointer-events:none}
+.deco-arana{position:absolute;top:0;width:2px;height:0;background:rgba(255,255,255,.6);animation:deco-bajar ease-in-out infinite}
+.deco-arana span{position:absolute;bottom:-16px;left:-10px;font-size:22px;line-height:1}
+@keyframes deco-bajar{0%{height:0}30%{height:var(--h)}62%{height:var(--h)}95%{height:0}100%{height:0}}
+
+/* Celular: sin lápida y con una sola araña */
+@media (max-width:700px){
+  .deco-lapida{display:none}
+  .deco-arana:nth-child(n+2){display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .deco-niebla{animation:none}
+  .deco-arana{display:none}
+}
